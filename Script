@@ -1,0 +1,710 @@
+-- This was made by ~Xanyboyo2~
+-- Inside of roblox studio!
+-- So it will have some things that it normally doesnt
+local Player = game.Players.LocalPlayer -- Localizes the player
+local uis = game:GetService("UserInputService")
+
+--- Creation ---
+
+local ScreenGui = Instance.new("ScreenGui",Player.PlayerGui)
+ScreenGui.IgnoreGuiInset = true
+
+local MainFrame = Instance.new("Frame",ScreenGui)
+MainFrame.Position = UDim2.new(0,0,0,0)
+MainFrame.Size = UDim2.new(1,0,1,0)
+MainFrame.BackgroundTransparency = 1
+MainFrame.BorderSizePixel = 0
+
+local ScriptsFrame = Instance.new("Frame",MainFrame)
+ScriptsFrame.Size = UDim2.new(0.82, 0,0.82, 0)
+ScriptsFrame.Position = UDim2.new(0.09, 0,0.09, 0)
+ScriptsFrame.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+ScriptsFrame.BackgroundTransparency = 0.2
+ScriptsFrame.BorderSizePixel = 0
+ScriptsFrame.Visible = false
+
+local ToggleButton = Instance.new("TextButton",MainFrame)
+ToggleButton.Position = UDim2.new(0.006, 0,0.908, 0)
+ToggleButton.Size = UDim2.new(0.175, 0,0.081, 0)
+ToggleButton.TextScaled = true
+ToggleButton.TextColor3 = Color3.new(255,255,255)
+ToggleButton.BackgroundColor3 = Color3.new(0.243137, 0.243137, 0.243137)
+ToggleButton.FontFace.Bold = true
+ToggleButton.Font = "Roboto"
+ToggleButton.Text = "Open Frame"
+ToggleButton.BorderSizePixel = 0
+
+local ScrollingFrame = Instance.new("ScrollingFrame",ScriptsFrame)
+ScrollingFrame.Size = UDim2.new(0.998,0,0.903,0)
+ScrollingFrame.Position = UDim2.new(0,0,0.097,0)
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.CanvasSize = UDim2.new(0,0,4,0)
+ScrollingFrame.ScrollBarThickness = 8
+
+local TextLabel1 = Instance.new("TextLabel",ScriptsFrame)
+TextLabel1.BackgroundTransparency = 1
+TextLabel1.Position = UDim2.new(0,0,0,0)
+TextLabel1.Size = UDim2.new(1,0,0.097,0)
+TextLabel1.TextScaled = true
+TextLabel1.Text = "Xany's Gui"
+TextLabel1.TextColor3 = Color3.new(1, 1, 1)
+
+local GridLayout = Instance.new("UIGridLayout",ScrollingFrame)
+GridLayout.CellSize = UDim2.new(0.153,0,0.01915,0)
+GridLayout.CellPadding = UDim2.new(0,10,0,10)
+GridLayout.FillDirection = "Horizontal"
+GridLayout.FillDirectionMaxCells = 0
+GridLayout.SortOrder = "LayoutOrder"
+GridLayout.StartCorner = "TopLeft"
+GridLayout.HorizontalAlignment = "Center"
+GridLayout.VerticalAlignment = "Top"
+
+local NoclipButton = Instance.new("TextButton",ScrollingFrame)
+NoclipButton.BackgroundColor3 = Color3.new(0.152941, 0.152941, 0.152941)
+NoclipButton.TextColor3 = Color3.new(1,1,1)
+NoclipButton.TextScaled = true
+NoclipButton.Text = "Noclip"
+
+local jumpbutton = Instance.new("TextButton",ScrollingFrame)
+jumpbutton.BackgroundColor3 = Color3.new(0.152941, 0.152941, 0.152941)
+jumpbutton.TextColor3 = Color3.new(1,1,1)
+jumpbutton.TextScaled = true
+jumpbutton.Text = "Infjump"
+
+local TextBox = Instance.new("TextBox",ScrollingFrame)
+TextBox.BackgroundColor3 = Color3.new(0.152941, 0.152941, 0.152941)
+TextBox.TextColor3 = Color3.new(1,1,1)
+TextBox.PlaceholderColor3 = Color3.new(1,1,1)
+TextBox.TextScaled = true
+TextBox.Text = "16"
+TextBox.PlaceholderText = "Speed"
+
+local lij = Instance.new("TextButton",ScrollingFrame)
+lij.BackgroundColor3 = Color3.new(0.152941, 0.152941, 0.152941)
+lij.TextColor3 = Color3.new(1,1,1)
+lij.TextScaled = true
+lij.Text = "Legit infjump"
+
+local Flyb = Instance.new("TextButton",ScrollingFrame)
+Flyb.BackgroundColor3 = Color3.new(0.152941, 0.152941, 0.152941)
+Flyb.TextColor3 = Color3.new(1,1,1)
+Flyb.TextScaled = true
+Flyb.Text = "Fly"
+
+local Fling = Instance.new("TextButton",ScrollingFrame)
+Fling.BackgroundColor3 = Color3.new(0.152941, 0.152941, 0.152941)
+Fling.TextColor3 = Color3.new(1,1,1)
+Fling.TextScaled = true
+Fling.Text = "Fling yourself"
+
+local Invisibilityb = Instance.new("TextButton",ScrollingFrame)
+Invisibilityb.BackgroundColor3 = Color3.new(0.152941, 0.152941, 0.152941)
+Invisibilityb.TextColor3 = Color3.new(1,1,1)
+Invisibilityb.TextScaled = true
+Invisibilityb.Text = "Invisibility"
+
+--- Customization ---
+
+--ContextualStroke
+local contstroke1 = Instance.new("UIStroke",ToggleButton)
+contstroke1.Color = Color3.new(0.172549, 0.172549, 0.172549)
+contstroke1.ApplyStrokeMode = "Contextual"
+contstroke1.LineJoinMode = "Round"
+contstroke1.Thickness = 2
+
+--BorderStroke
+local bordstroke1 = Instance.new("UIStroke",ToggleButton)
+bordstroke1.Color = Color3.new(0.172549, 0.172549, 0.172549)
+bordstroke1.ApplyStrokeMode = "Border"
+bordstroke1.LineJoinMode = "Round"
+bordstroke1.Thickness = 3
+
+--BorderStroke
+local bordstroke2 = Instance.new("UIStroke",ScriptsFrame)
+bordstroke2.Color = Color3.new(0.141176, 0.141176, 0.141176)
+bordstroke2.ApplyStrokeMode = "Border"
+bordstroke2.LineJoinMode = "Round"
+bordstroke2.Thickness = 5
+bordstroke2.Transparency = 0.2
+
+--ContextualStroke
+local contstroke2 = Instance.new("UIStroke",TextLabel1)
+contstroke2.Color = Color3.new(0, 0, 0)
+contstroke2.ApplyStrokeMode = "Contextual"
+contstroke2.LineJoinMode = "Round"
+contstroke2.Thickness = 2
+
+--UICorner
+local uicorner1 = Instance.new("UICorner",NoclipButton)
+uicorner1.CornerRadius = UDim.new(0,4)
+
+--ContextualStroke
+local contstroke3 = Instance.new("UIStroke",NoclipButton)
+contstroke3.Color = Color3.new(0.129412, 0.129412, 0.129412)
+contstroke3.ApplyStrokeMode = "Contextual"
+contstroke3.LineJoinMode = "Round"
+contstroke3.Thickness = 2
+
+--BorderStroke
+local bordstroke3 = Instance.new("UIStroke",NoclipButton)
+bordstroke3.Color = Color3.new(0.129412, 0.129412, 0.129412)
+bordstroke3.ApplyStrokeMode = "Border"
+bordstroke3.LineJoinMode = "Round"
+bordstroke3.Thickness = 2
+
+--UICorner
+local uicorner2 = Instance.new("UICorner",jumpbutton)
+uicorner2.CornerRadius = UDim.new(0,4)
+
+--ContextualStroke
+local contstroke4 = Instance.new("UIStroke",jumpbutton)
+contstroke4.Color = Color3.new(0.129412, 0.129412, 0.129412)
+contstroke4.ApplyStrokeMode = "Contextual"
+contstroke4.LineJoinMode = "Round"
+contstroke4.Thickness = 2
+
+--BorderStroke
+local bordstroke4 = Instance.new("UIStroke",jumpbutton)
+bordstroke4.Color = Color3.new(0.129412, 0.129412, 0.129412)
+bordstroke4.ApplyStrokeMode = "Border"
+bordstroke4.LineJoinMode = "Round"
+bordstroke4.Thickness = 2
+
+--UICorner
+local uicorner3 = Instance.new("UICorner",TextBox)
+uicorner3.CornerRadius = UDim.new(0,4)
+
+--ContextualStroke
+local contstroke5 = Instance.new("UIStroke",TextBox)
+contstroke5.Color = Color3.new(0.129412, 0.129412, 0.129412)
+contstroke5.ApplyStrokeMode = "Contextual"
+contstroke5.LineJoinMode = "Round"
+contstroke5.Thickness = 2
+
+--BorderStroke
+local bordstroke5 = Instance.new("UIStroke",TextBox)
+bordstroke5.Color = Color3.new(0.129412, 0.129412, 0.129412)
+bordstroke5.ApplyStrokeMode = "Border"
+bordstroke5.LineJoinMode = "Round"
+bordstroke5.Thickness = 2
+
+--UICorner
+local uicorner4 = Instance.new("UICorner",lij)
+uicorner4.CornerRadius = UDim.new(0,4)
+
+--ContextualStroke
+local contstroke6 = Instance.new("UIStroke",lij)
+contstroke6.Color = Color3.new(0.129412, 0.129412, 0.129412)
+contstroke6.ApplyStrokeMode = "Contextual"
+contstroke6.LineJoinMode = "Round"
+contstroke6.Thickness = 2
+
+--BorderStroke
+local bordstroke6 = Instance.new("UIStroke",lij)
+bordstroke6.Color = Color3.new(0.129412, 0.129412, 0.129412)
+bordstroke6.ApplyStrokeMode = "Border"
+bordstroke6.LineJoinMode = "Round"
+bordstroke6.Thickness = 2
+
+--UICorner
+local uicorner5 = Instance.new("UICorner",Flyb)
+uicorner5.CornerRadius = UDim.new(0,4)
+
+--ContextualStroke
+local contstroke7 = Instance.new("UIStroke",Flyb)
+contstroke7.Color = Color3.new(0.129412, 0.129412, 0.129412)
+contstroke7.ApplyStrokeMode = "Contextual"
+contstroke7.LineJoinMode = "Round"
+contstroke7.Thickness = 2
+
+--BorderStroke
+local bordstroke7 = Instance.new("UIStroke",Flyb)
+bordstroke7.Color = Color3.new(0.129412, 0.129412, 0.129412)
+bordstroke7.ApplyStrokeMode = "Border"
+bordstroke7.LineJoinMode = "Round"
+bordstroke7.Thickness = 2
+
+--UICorner
+local uicorner6 = Instance.new("UICorner",Fling)
+uicorner6.CornerRadius = UDim.new(0,4)
+
+--ContextualStroke
+local contstroke8 = Instance.new("UIStroke",Fling)
+contstroke8.Color = Color3.new(0.129412, 0.129412, 0.129412)
+contstroke8.ApplyStrokeMode = "Contextual"
+contstroke8.LineJoinMode = "Round"
+contstroke8.Thickness = 2
+
+--BorderStroke
+local bordstroke8 = Instance.new("UIStroke",Fling)
+bordstroke8.Color = Color3.new(0.129412, 0.129412, 0.129412)
+bordstroke8.ApplyStrokeMode = "Border"
+bordstroke8.LineJoinMode = "Round"
+bordstroke8.Thickness = 2
+
+--UICorner
+local uicorner7 = Instance.new("UICorner",Invisibilityb)
+uicorner7.CornerRadius = UDim.new(0,4)
+
+--ContextualStroke
+local contstroke9 = Instance.new("UIStroke",Invisibilityb)
+contstroke9.Color = Color3.new(0.129412, 0.129412, 0.129412)
+contstroke9.ApplyStrokeMode = "Contextual"
+contstroke9.LineJoinMode = "Round"
+contstroke9.Thickness = 2
+
+--BorderStroke
+local bordstroke9 = Instance.new("UIStroke",Invisibilityb)
+bordstroke9.Color = Color3.new(0.129412, 0.129412, 0.129412)
+bordstroke9.ApplyStrokeMode = "Border"
+bordstroke9.LineJoinMode = "Round"
+bordstroke9.Thickness = 2
+
+--- Functions ---
+local Noclip = false
+local infjump = false
+local PartTable = {}
+local speed = 16
+local LegitIJ = false
+local LegitIJHeight = Vector3.new(0,3.75)
+local Fly = false
+local Flingv = false
+local Invisibility = false
+
+
+ToggleButton.MouseButton1Click:Connect(function()
+	ScriptsFrame.Visible = not ScriptsFrame.Visible
+	if ScriptsFrame.Visible == true then
+		ToggleButton.Text = "Close Frame"
+	else
+		ToggleButton.Text = "Open Frame"
+	end
+end)
+
+Flyb.MouseButton1Click:Connect(function()
+	Fly = not Fly
+end)
+
+NoclipButton.MouseButton1Click:Connect(function()
+	Noclip = not Noclip
+end)
+
+jumpbutton.MouseButton1Click:Connect(function()
+	infjump = not infjump
+end)
+
+lij.MouseButton1Click:Connect(function()
+	LegitIJ = not LegitIJ
+end)
+
+if game.Players.LocalPlayer.Character ~= nil then
+	for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		if child:IsA("BasePart") and child.CanCollide == true then
+			table.insert(PartTable,child)
+		end
+	end
+end
+
+Invisibilityb.MouseButton1Click:Connect(function()
+	Invisibility = not Invisibility
+	if Invisibility == true then
+		for _, child in pairs(Player.Character:GetDescendants()) do
+			if child ~= nil and child:IsA("BasePart") then
+				if child.Transparency == 0 then
+					child.Transparency = 1
+				end
+			elseif child ~= nil and child:IsA("Decal") then
+				child.Transparency = 1
+			end
+		end
+	else
+		for _, child in pairs(Player.Character:GetDescendants()) do
+			if child ~= nil and child:IsA("BasePart") then
+				if child.Transparency == 1 and child.Name ~= "HumanoidRootPart" then
+					child.Transparency = 0
+				end
+			elseif child ~= nil and child:IsA("Decal") then
+				child.Transparency = 0
+			end
+		end
+	end
+end)
+
+uis.InputEnded:Connect(function(key)
+	if key.KeyCode == Enum.KeyCode.F then
+		LegitIJ = not LegitIJ
+	end
+end)
+
+game:GetService("RunService").Stepped:Connect(function()
+	speed = tonumber(TextBox.Text)
+end)
+
+local function debris(timer,part)
+	wait(timer)
+	part:Destroy()
+end
+
+local function NoclipLoop()
+	if game.Players.LocalPlayer.Character ~= nil then
+		for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if child:IsA("BasePart") and child.CanCollide == true then
+				child.CanCollide = false
+			end
+		end
+	end
+end
+
+local function ClipLoop()
+	if game.Players.LocalPlayer.Character ~= nil then
+		for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if child:IsA("BasePart") then
+				for i,v in pairs(PartTable) do
+					if child == v then
+						child.CanCollide = true
+					end
+				end
+			end
+		end
+	end
+end
+
+Fling.MouseButton1Click:Connect(function()
+	Flingv = not Flingv
+	if Flingv == true then
+		repeat
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		wait()
+		until Flingv ~= true
+	else
+		Player.Character.Humanoid:ChangeState(5)
+	end
+end)
+
+game:GetService('RunService').Stepped:connect(function()
+	if Noclip then
+		NoclipLoop()
+	else
+		ClipLoop()
+	end
+end)
+
+game:GetService("RunService").Stepped:Connect(function()
+	if infjump == true then
+		game:GetService("UserInputService").JumpRequest:connect(function()
+			if infjump == true then
+				game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")       
+			end	
+		end)
+	else
+		return
+	end
+end)
+
+game:GetService("RunService").Stepped:Connect(function()
+	Player.Character.Humanoid.WalkSpeed = speed
+end)
+
+local pt = 0.8
+local dt = 0
+local t = 0
+local ps = Vector3.new(8,1.2,8)
+repeat
+	t += 0.3
+game:GetService("RunService").Heartbeat:Connect(function()
+	if LegitIJ == true then
+		if game.Workspace:FindFirstChild("LegitParts") == nil then
+			local PartsFolder = Instance.new("Folder",workspace)
+			PartsFolder.Name = "LegitParts"
+			local Part = Instance.new("Part",PartsFolder)
+			Part.Anchored = true
+			Part.Size = ps
+			Part.Position = Player.Character.HumanoidRootPart.Position - LegitIJHeight
+			Part.Transparency = pt
+			debris(dt,Part)
+		else
+			local Part = Instance.new("Part",workspace:FindFirstChild("LegitParts"))
+			Part.Anchored = true
+			Part.Size = ps
+			Part.Position = Player.Character.HumanoidRootPart.Position - LegitIJHeight
+			Part.Transparency = pt
+			debris(dt,Part)
+		end
+	else
+		if game.Workspace:FindFirstChild("LegitParts") ~= nil then
+			game.Workspace:FindFirstChild("LegitParts"):Destroy()
+		end
+	end
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
+	if LegitIJ == true then
+		if game.Workspace:FindFirstChild("LegitParts") == nil then
+			local PartsFolder = Instance.new("Folder",workspace)
+			PartsFolder.Name = "LegitParts"
+			local Part = Instance.new("Part",PartsFolder)
+			Part.Anchored = true
+			Part.Size = ps
+			Part.Position = Player.Character.HumanoidRootPart.Position - LegitIJHeight
+			Part.Transparency = pt
+			debris(dt,Part)
+		else
+			local Part = Instance.new("Part",workspace:FindFirstChild("LegitParts"))
+			Part.Anchored = true
+			Part.Size = ps
+			Part.Position = Player.Character.HumanoidRootPart.Position - LegitIJHeight
+			Part.Transparency = pt
+			debris(dt,Part)
+		end
+	else
+		if game.Workspace:FindFirstChild("LegitParts") ~= nil then
+			game.Workspace:FindFirstChild("LegitParts"):Destroy()
+		end
+	end
+end)
+game:GetService("RunService").Stepped:Connect(function()
+	if LegitIJ == true then
+		if game.Workspace:FindFirstChild("LegitParts") == nil then
+			local PartsFolder = Instance.new("Folder",workspace)
+			PartsFolder.Name = "LegitParts"
+			local Part = Instance.new("Part",PartsFolder)
+			Part.Anchored = true
+			Part.Size = ps
+			Part.Position = Player.Character.HumanoidRootPart.Position - LegitIJHeight
+			Part.Transparency = pt
+			debris(dt,Part)
+		else
+			local Part = Instance.new("Part",workspace:FindFirstChild("LegitParts"))
+			Part.Anchored = true
+				Part.Size = ps
+			Part.Position = Player.Character.HumanoidRootPart.Position - LegitIJHeight
+			Part.Transparency = pt
+			debris(dt,Part)
+		end
+	else
+		if game.Workspace:FindFirstChild("LegitParts") ~= nil then
+			game.Workspace:FindFirstChild("LegitParts"):Destroy()
+		end
+	end
+end)
+wait(t)
+until t >= 1
+
+game:GetService("RunService").Stepped:Connect(function()
+	if Fly == true then
+		if Fly == true then
+			Player.Character.Humanoid:ChangeState(4)
+		else
+			Player.Character.Humanoid:ChangeState(5)
+		end
+	end
+end)
+
+game:GetService("RunService").Heartbeat:Connect(function()
+	local xran = math.random(1,10)
+	local yran = math.random(1,10)
+	local zran = math.random(1,10)
+	local vecran = Vector3.new(xran,yran,zran)
+	if Flingv == true then
+		--Player.Character.PrimaryPart.Position = Player.Character.PrimaryPart.Position + vecran
+	end
+end)
+game:GetService("RunService").Heartbeat:Connect(function()
+	if Flingv == true then
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(12)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(12)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(10)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(10)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+	end	
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
+	if Flingv == true then
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(12)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(12)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(10)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(10)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+	end	
+end)
+game:GetService("RunService").Stepped:Connect(function()
+	if Flingv == true then
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(12)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(12)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(10)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(0)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(10)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(2)
+		Player.Character.Humanoid:ChangeState(1)
+		Player.Character.Humanoid:ChangeState(11)
+		Player.Character.Humanoid:ChangeState(1)
+	end	
+end)
+while wait(2.5) do
+	if Flingv == true then
+		--Player.Character:MoveTo(Player.Character.HumanoidRootPart.Position + Vector3.new(0,1000,0))
+	end
+end
+
+game:GetService("RunService").Stepped:Connect(function()
+	print(Invisibility)
+	if Invisibility == true then
+		for _, child in pairs(Player.Character:GetDescendants()) do
+			if child ~= nil and child:IsA("BasePart") then
+				if child.Transparency == 0 then
+					child.Transparency = 1
+				end
+			end
+		end
+	else
+		for _, child in pairs(Player.Character:GetDescendants()) do
+			if child ~= nil and child:IsA("BasePart") then
+				if child.Transparency == 1 then
+					child.Transparency = 0
+				end
+			end
+		end
+	end
+end)
