@@ -1,0 +1,60 @@
+local plr = game:GetService("Players").LocalPlayer
+local character = plr.Character or plr.CharacterAdded
+local TextChatService = game:GetService("TextChatService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local prefix = "!"
+local PlaceId, JobId = game.PlaceId, game.JobId
+local TeleportService = game:GetService("TeleportService")
+print(PlaceId, JobId)
+
+local function Chat(str)
+	str = tostring(str)
+	if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+		TextChatService.TextChannels.RBXGeneral:SendAsync(str)
+	else
+		ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(str, "All")
+	end
+end
+
+Chat("Say !cmds for a list of cmds | script by hehehestinky5")
+
+local function listcmds()
+	game:GetService('StarterGui'):SetCore("DevConsoleVisible", true)
+	print(" \n","UPDATE 1\n","Prefix is "..prefix,"\n\n","Commands:\n","#Chat#\n","chat (MESSAGE)\n\n","#Prefix#\n","prefix (NEW PREFIX)\n\n","#Noclip#\n","noclip\n\n","#Clip#\n","clip\n\n","#Rejoin#\n","rejoin\n","_____________________________________________________________")
+end
+
+local function ChangePrefix(nprefix)
+	prefix = nprefix
+end
+
+local function Rejoin()
+	if #game.Players:GetPlayers() <= 1 then
+		game.Players.LocalPlayer:Kick("\nRejoining...")
+		wait()
+		TeleportService:Teleport(PlaceId, game.Players.LocalPlayer)
+	else
+		TeleportService:TeleportToPlaceInstance(PlaceId, JobId, game.Players.LocalPlayer)
+	end
+end
+
+print(prefix.."cmds")
+plr.Chatted:Connect(function(msg)
+	if string.match(msg, prefix.."cmds") then
+		listcmds()
+	end
+	if string.match(msg, prefix.. "chat") then
+		local split = string.split(msg, " ")
+		local str = split[2]
+		Chat(str)
+	end
+	if string.match(msg, prefix.."prefix") then
+		local split = string.split(msg, " ")
+		local newprefix = split[2]
+		ChangePrefix(newprefix)
+	end
+	if string.match(msg, prefix.."rejoin") then
+		Rejoin()
+	end
+    if string.match(msg, prefix.."noclip") then
+        
+end)
