@@ -301,5 +301,7 @@ plr.Chatted:Connect(function(msg)
 	if string.match(msg, prefix.."unspam") then
 		spam = false
 	end
-	if string.match()
+	if string.match(msg, "") then
+		
+	end
 end)
