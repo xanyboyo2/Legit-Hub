@@ -1,0 +1,305 @@
+local plr = game:GetService("Players").LocalPlayer
+local character = plr.Character or plr.CharacterAdded
+local TextChatService = game:GetService("TextChatService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local prefix = "!"
+local PlaceId, JobId = game.PlaceId, game.JobId
+local TeleportService = game:GetService("TeleportService")
+print(PlaceId, JobId)
+local loopws = false
+local vfly = false
+local Players = game:GetService("Players")
+local IYMouse = Players.LocalPlayer:GetMouse()
+local Humanoid = plr.Character.Humanoid
+local loopnc = false
+local spam = false
+
+function getRoot(char)
+	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+	return rootPart
+end
+
+local function Chat(str)
+	str = tostring(str)
+	if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+		TextChatService.TextChannels.RBXGeneral:SendAsync(str)
+	else
+		ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(str, "All")
+	end
+end
+
+Chat("Say !cmds for a list of cmds | script by hehehestinky5")
+
+local function listcmds()
+	game:GetService('StarterGui'):SetCore("DevConsoleVisible", true)
+	print(" \n","UPDATE 1\n","Prefix is "..prefix,"\n\n","Commands:\n","#Chat#\n","chat (MESSAGE)\n\n","#Prefix#\n","prefix (NEW PREFIX)\n\n","#Noclip#\n","noclip\n\n","#Clip#\n","clip\n\n","#Rejoin#\n","rejoin\n","_____________________________________________________________")
+end
+
+local function ChangePrefix(nprefix)
+	prefix = nprefix
+end
+
+local function Respawn()
+	local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
+	local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid
+	wait()
+	game:GetService("Players").LocalPlayer.Character:BreakJoints()
+	game:GetService("Players").LocalPlayer.Character.Head:Destroy()
+	local pos2 = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
+	Humanoid.Died:Connect(function()
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
+		print(game:GetService("Players").LocalPlayer.Character.Humanoid.Health)
+		game:GetService("Players").LocalPlayer.Character.Torso:Destroy()
+		repeat wait() until game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 100
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+		print(pos)
+		print(game:GetService("Players").LocalPlayer.Character.Humanoid.Health)
+	end)
+end
+
+local function Rejoin()
+	if #game.Players:GetPlayers() <= 1 then
+		game.Players.LocalPlayer:Kick("\nRejoining...")
+		wait()
+		TeleportService:Teleport(PlaceId, game.Players.LocalPlayer)
+	else
+		TeleportService:TeleportToPlaceInstance(PlaceId, JobId, game.Players.LocalPlayer)
+	end
+end
+
+local function speed(num)
+	Humanoid.WalkSpeed = num
+end
+
+FLYING = false
+QEfly = true
+iyflyspeed = 1
+vehicleflyspeed = 1
+function sFLY(vfly)
+	repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+	repeat wait() until IYMouse
+	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+
+	local T = getRoot(Players.LocalPlayer.Character)
+	local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+	local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+	local SPEED = 0
+
+	local function FLY()
+		FLYING = true
+		local BG = Instance.new('BodyGyro')
+		local BV = Instance.new('BodyVelocity')
+		BG.P = 9e4
+		BG.Parent = T
+		BV.Parent = T
+		BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+		BG.cframe = T.CFrame
+		BV.velocity = Vector3.new(0, 0, 0)
+		BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+		task.spawn(function()
+			repeat wait()
+				if not vfly and Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+					Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+				end
+				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
+					SPEED = 50
+				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
+					SPEED = .9999
+				end
+				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
+					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
+					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+				else
+					BV.velocity = Vector3.new(0, 0, 0)
+				end
+				BG.cframe = workspace.CurrentCamera.CoordinateFrame
+			until not FLYING
+			CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+			lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+			SPEED = 0
+			BG:Destroy()
+			BV:Destroy()
+			if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+				Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+			end
+		end)
+	end
+	flyKeyDown = IYMouse.KeyDown:Connect(function(KEY)
+		if KEY:lower() == 'w' then
+			CONTROL.F = (vfly and vehicleflyspeed or iyflyspeed)
+		elseif KEY:lower() == 's' then
+			CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
+		elseif KEY:lower() == 'a' then
+			CONTROL.L = - (vfly and vehicleflyspeed or iyflyspeed)
+		elseif KEY:lower() == 'd' then 
+			CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
+		elseif QEfly and KEY:lower() == 'e' then
+			CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
+		elseif QEfly and KEY:lower() == 'q' then
+			CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
+		end
+		pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
+	end)
+	flyKeyUp = IYMouse.KeyUp:Connect(function(KEY)
+		if KEY:lower() == 'w' then
+			CONTROL.F = 0
+		elseif KEY:lower() == 's' then
+			CONTROL.B = 0
+		elseif KEY:lower() == 'a' then
+			CONTROL.L = 0
+		elseif KEY:lower() == 'd' then
+			CONTROL.R = 0
+		elseif KEY:lower() == 'e' then
+			CONTROL.Q = 0
+		elseif KEY:lower() == 'q' then
+			CONTROL.E = 0
+		end
+	end)
+	FLY()
+end
+
+function NOFLY()
+	FLYING = false
+	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+	if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+
+		Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+	end
+	pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
+end
+
+local function loopspd(loop,newspeed)
+	loopws = loop
+	while loopws == true and Humanoid.WalkSpeed ~= newspeed do
+		Humanoid.WalkSpeed = newspeed
+		wait()
+	end
+end
+
+local function noclip()
+	for i,v in pairs(plr.Character:GetDescendants()) do
+		if v:IsA("BasePart") or v:IsA("MeshPart") then
+			v.CanCollide = false
+		end
+	end
+end
+
+local function loopnoclip(loop)
+	loopnc = loop
+	while loopnc == true do
+		for i,v in pairs(plr.Character:GetDescendants()) do
+			if v:IsA("BasePart") or v:IsA("MeshPart") then
+				if v.CanCollide == true then
+					v.CanCollide = false
+				end
+			end
+		end
+		wait()
+	end
+end
+
+local function spamchat(str, cooldown)
+	if spam then
+		while spam == true do
+			Chat(str)
+			wait(cooldown)
+		end
+	end
+end
+
+
+
+local function changevehicleflyspeed(speed)
+	vehicleflyspeed = speed
+end
+
+print(prefix.."cmds")
+plr.Chatted:Connect(function(msg)
+	if string.match(msg, prefix.."cmds") then
+		listcmds()
+	end
+	if string.match(msg, prefix.. "chat") then
+		local split = string.split(msg, " ")
+		local str = split[2]
+		Chat(str)
+	end
+	if string.match(msg, prefix.."prefix") then
+		local split = string.split(msg, " ")
+		local newprefix = split[2]
+		ChangePrefix(newprefix)
+	end
+	if string.match(msg, prefix.."rejoin") then
+		Rejoin()
+	end
+	if string.match(msg, prefix.."noclip") then
+		noclip()
+	end
+	if string.match(msg, prefix.."loopnoclip") then
+		loopnoclip(true)
+	end
+	if string.match(msg, prefix.."clip") then
+		loopnoclip(false)
+		Respawn()
+	end
+	if string.match(msg, prefix.."respawn") or string.match(msg, prefix.."re") or string.match(msg, prefix.."refresh") then
+		Respawn()
+	end
+	if string.match(msg, prefix.."speed") then
+		local split = string.split(msg, " ")
+		local num = split[2]
+		speed(tonumber(num))
+	end
+	if string.match(msg, prefix.."loopws") or string.match(msg, prefix.."loopspeed") then
+		local split = string.split(msg, " ")
+		local num = split[2]
+		loopspd(true, tonumber(num))
+	end
+	if string.match(msg, prefix.."vfly") or string.match(msg, prefix.."vehiclefly") then
+		vfly = true
+		sFLY(vfly)
+		local split = string.split(msg, " ")
+		local spd = split[2]
+		if split and split ~= nil then
+			changevehicleflyspeed(tonumber(spd))
+		end
+	end
+	if string.match(msg, prefix.."unvfly") or string.match(msg, prefix.."unvehiclefly") then
+		vfly = false
+		NOFLY()
+	end
+	if string.match(msg, prefix.."fly") then
+		vfly = true
+		sFLY(vfly)
+		local split = string.split(msg, " ")
+		local spd = split[2]
+		if split and split ~= nil then
+			changevehicleflyspeed(tonumber(spd))
+		end
+	end
+	if string.match(msg, prefix.."unfly") then
+		vfly = false
+		NOFLY()
+	end
+	if string.match(msg, prefix.."spam") then
+		local split = string.split(msg, " ")
+		local str = split[2]
+		if split[3] then
+			local temp = split[3]
+			local cooldown = tonumber(temp)
+			spam = true
+			spamchat(str, cooldown)
+		else
+			
+		end
+		local temp = split[3]
+		local cooldown = tonumber(temp)
+		spam = true
+		spamchat(str, cooldown)
+	end
+	if string.match(msg, prefix.."unspam") then
+		spam = false
+	end
+	if string.match()
+end)
