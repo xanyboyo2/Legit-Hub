@@ -1,0 +1,492 @@
+local Players = game:GetService("Players")
+local Plr = Players.LocalPlayer
+local PlrGui = Plr.PlayerGui
+local TextChatService = game:GetService("TextChatService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Mouse = Plr:GetMouse()
+local Dragging = false
+
+local screengui = Instance.new("ScreenGui",PlrGui)
+screengui.ResetOnSpawn = false
+screengui.Enabled = true
+
+local frame = Instance.new("Frame",screengui)
+frame.BackgroundColor3 = Color3.new(0,0.615686,1)
+frame.BorderColor3 = Color3.new(0,0.835294,1)
+frame.BorderMode = "Outline"
+frame.BorderSizePixel = 5
+frame.Position = UDim2.new(0,0,0.572,0)
+frame.Rotation = 0
+frame.Size = UDim2.new(0.316,0,0.443,0)
+frame.Visible = true
+
+local textbox = Instance.new("TextBox",frame)
+textbox.BackgroundColor3 = Color3.new(0,0.615686,1)
+textbox.BorderSizePixel = 0
+textbox.ClearTextOnFocus = false
+textbox.Interactable = true
+textbox.Position = UDim2.new(0,0,0.238,0)
+textbox.Rotation = 0
+textbox.Size = UDim2.new(1,0,0.497,0)
+textbox.TextEditable = true
+textbox.Font = Enum.Font.SourceSansBold
+textbox.PlaceholderColor3 = Color3.new(1,1,1)
+textbox.TextColor3 = Color3.new(1,1,1)
+textbox.PlaceholderText = "Type in the text that you would like to bypass!"
+textbox.Text = ""
+textbox.TextScaled = true
+textbox.Visible = true
+
+local uistroke1 = Instance.new("UIStroke",textbox)
+uistroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+uistroke1.Color = Color3.new(0,0,0)
+uistroke1.LineJoinMode = Enum.LineJoinMode.Round
+uistroke1.Thickness = 2
+uistroke1.Transparency = 0
+
+local textbutton = Instance.new("TextButton",frame)
+textbutton.Active = true
+textbutton.BackgroundColor3 = Color3.new(0.133333,1,0)
+textbutton.BorderSizePixel = 0
+textbutton.Interactable = true
+textbutton.Position = UDim2.new(0.236,0,0.733,0)
+textbutton.Rotation = 0
+textbutton.Size = UDim2.new(0.526,0,0.169,0)
+textbutton.Selectable = true
+textbutton.Font = Enum.Font.SourceSansBold
+textbutton.Text = "Chat"
+textbutton.TextColor3 = Color3.new(1,1,1)
+textbutton.TextScaled = true
+textbutton.Visible = true
+
+local uistroke2 = Instance.new("UIStroke",textbutton)
+uistroke2.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+uistroke2.Color = Color3.new(0.121569, 0.901961, 0)
+uistroke2.LineJoinMode = Enum.LineJoinMode.Round
+uistroke2.Thickness = 2
+uistroke2.Transparency = 0
+
+local textlabel = Instance.new("TextLabel",frame)
+textlabel.BackgroundColor3 = Color3.new(0, 0.615686, 1)
+textlabel.BorderSizePixel = 0
+textlabel.Position = UDim2.new(0,0,0,0)
+textlabel.Rotation = 0
+textlabel.Size = UDim2.new(1,0,0.24,0)
+textlabel.Font = Enum.Font.MontserratBold
+textlabel.Text = "Swear Bypasser"
+textlabel.TextColor3 = Color3.new(1,1,1)
+textlabel.TextScaled = true
+textlabel.Visible = true
+
+local uistroke3 = Instance.new("UIStroke",textlabel)
+uistroke3.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+uistroke3.Color = Color3.new(0,0,0)
+uistroke3.LineJoinMode = Enum.LineJoinMode.Round
+uistroke3.Thickness = 2
+uistroke3.Transparency = 0
+
+local drag = Instance.new("TextButton",frame)
+drag.Active = true
+drag.BackgroundColor3 = Color3.new(1,1,1)
+drag.BackgroundTransparency = 1
+drag.BorderSizePixel = 0
+drag.Interactable = true
+drag.Name = "drag"
+drag.Position = UDim2.new(0,0,0,0)
+drag.Rotation = 0
+drag.Size = UDim2.new(1,0,0.193,0)
+drag.Visible = true
+drag.ZIndex = 2
+drag.Selectable = true
+drag.SelectionOrder = 2
+drag.Text = ""
+
+local function Drag()
+	Dragging = true
+	while Dragging == true do
+		frame:TweenPosition((UDim2.new(0,Mouse.X,0,Mouse.Y) - UDim2.new((frame.Size.X.Scale/2),0, 0,25)),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,0.05)
+		wait()
+	end
+end
+
+local function Release()
+	Dragging = false
+end
+
+local function Chat(str)
+	str = tostring(str)
+	if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+		TextChatService.TextChannels.RBXGeneral:SendAsync(str)
+	else
+		ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(str, "All")
+	end
+end
+
+textbutton.MouseButton1Click:Connect(function()
+	if textbox.Text ~= nil then
+		local str = ""
+		for i,b in pairs(string.split(textbox.Text,"")) do
+			local v = string.split(textbox.Text,"")[i]
+			if v == "A" then
+				str = str.."Α"
+				print("A")
+			end
+			if v == "a" then
+				str = str.."a"
+				print("a")
+			end
+			if v == "B" then
+				str = str.."B"
+				print("B")
+			end
+			if v == "b" then
+				str = str.."ｂ"
+				print("b")
+			end
+			if v == "C" then
+				str = str.."⼕"
+				print("C")
+			end
+			if v == "c" then
+				str = str.."ｃ"
+				print("c")
+			end
+			if v == "D" then
+				str = str.."Ｄ"
+				print("D")
+			end
+			if v == "d" then
+				str = str.."ｄ"
+				print("d")
+			end
+			if v == "E" then
+				str = str.."Ｅ"
+				print("E")
+			end
+			if v == "e" then
+				str = str.."é"
+				print("e")
+			end
+			if v == "F" then
+				str = str.."Ϝ"
+				print("F")
+			end
+			if v == "f" then
+				str = str.."ﾁ"
+				print("f")
+			end
+			if v == "G" then
+				str = str.."Ｇ"
+				print("G")
+			end
+			if v == "g" then
+				str = str.."ɡ"
+				print("g")
+			end
+			if v == "H" then
+				str = str.."Ｈ"
+				print("H")
+			end
+			if v == "h" then
+				str = str.."h"
+				print("h")
+			end
+			if v == "I" then
+				str = str.."Ⅰ"
+				print("I")
+			end
+			if v == "i" then
+				str = str.."ｉ"
+				print("i")
+			end
+			if v == "J" then
+				str = str.."J"
+				print("J")
+			end
+			if v == "j" then
+				str = str.."ｊ"
+				print("j")
+			end
+			if v == "K" then
+				str = str.."Ｋ"
+				print("K")
+			end
+			if v == "k" then
+				str = str.."ｋ"
+				print("k")
+			end
+			if v == "L" then
+				str = str.."ʟ"
+				print("L")
+			end
+			if v == "l" then
+				str = str.."ｌ"
+				print("l")
+			end
+			if v == "M" then
+				str = str.."Ḿ"
+				print("M")
+			end
+			if v == "m" then
+				str = str.."м"
+				print("m")
+			end
+			if v == "N" then
+				str = str.."Ｎ"
+				print("N")
+			end
+			if v == "n" then
+				str = str.."ｎ"
+				print("n")
+			end
+			if v == "O" then
+				str = str.."O"
+				print("O")
+			end
+			if v == "o" then
+				str = str.."ó"
+				print("o")
+			end
+			if v == "P" then
+				str = str.."Ｐ"
+				print("P")
+			end
+			if v == "p" then
+				str = str.."ｐ"
+				print("p")
+			end
+			if v == "Q" then
+				str = str.."Ⴓ"
+				print("Q")
+			end
+			if v == "q" then
+				str = str.."ｑ"
+				print("q")
+			end
+			if v == "R" then
+				str = str.."ℝ"
+				print("R")
+			end
+			if v == "r" then
+				str = str.."ｒ" --rгᴦꭇꭈ
+				print("r")
+			end
+			if v == "S" then
+				str = str.."§"
+				print("S")
+			end
+			if v == "s" then
+				str = str.."§"
+				print("s")
+			end
+			if v == "T" then
+				str = str.."Τ"
+				print("T")
+			end
+			if v == "t" then
+				str = str.."τ"
+				print("t")
+			end
+			if v == "U" then
+				str = str.."ㄩ"
+				print("U")
+			end
+			if v == "u" then
+				str = str.."ㄩ"
+				print("u")
+			end
+			if v == "V" then
+				str = str.."Ѵ"
+				print("V")
+			end
+			if v == "v" then
+				str = str.."ⅴ"
+				print("v")
+			end
+			if v == "W" then
+				str = str.."W"
+				print("W")
+			end
+			if v == "w" then
+				str = str.."ѡ"
+				print("w")
+			end
+			if v == "X" then
+				str = str.."Ⅹ"
+				print("X")
+			end
+			if v == "x" then
+				str = str.."ⅹ"
+				print("x")
+			end
+			if v == "Y" then
+				str = str.."Ү"
+				print("Y")
+			end
+			if v == "y" then
+				str = str.."y"
+				print("y")
+			end
+			if v == "Z" then
+				str = str.."Ꮓ"
+				print("Z")
+			end
+			if v == "z" then
+				str = str.."z"
+				print("z")
+			end
+			if v == " " then
+				str = str.." "
+				print(" ")
+			end
+			if v == "?" then
+				str = str.."?"
+				print("?")
+			end
+			if v == "!" then
+				str = str.."!"
+				print("!")
+			end
+			if v == "'" then
+				str = str.."'"
+				print("'")
+			end
+			if v == `"` then
+				str = str..`"`
+				print(`"`)
+			end
+			if v == ";" then
+				str = str..";"
+				print(";")
+			end
+			if v == ":" then
+				str = str..":"
+				print(":")
+			end
+			if v == "." then
+				str = str.."."
+				print(".")
+			end
+			if v == "," then
+				str = str..","
+				print(",")
+			end
+			if v == "~" then
+				str = str.."~"
+				print("~")
+			end
+			if v == "/" then
+				str = str.."/"
+				print("/")
+			end
+			if v == "[" then
+				str = str.."["
+				print("[")
+			end
+			if v == "]" then
+				str = str.."]"
+				print("]")
+			end
+			if v == "@" then
+				str = str.."@"
+				print("@")
+			end
+			if v == "#" then
+				str = str.."#"
+				print("#")
+			end
+			if v == "$" then
+				str = str.."$"
+				print("$")
+			end
+			if v == "%" then
+				str = str.."%"
+				print("%")
+			end
+			if v == "^" then
+				str = str.."^"
+				print("^")
+			end
+			if v == "&" then
+				str = str.."&"
+				print("&")
+			end
+			if v == "*" then
+				str = str.."*"
+				print("*")
+			end
+			if v == "(" then
+				str = str.."("
+				print("(")
+			end
+			if v == "=" then
+				str = str.."="
+				print("=")
+			end
+			if v == "+" then
+				str = str.."+"
+				print("+")
+			end
+			if v == "-" then
+				str = str.."-"
+				print("-")
+			end
+			if v == "_" then
+				str = str.."_"
+				print("_")
+			end
+			if v == ")" then
+				str = str..")"
+				print(")")
+			end
+			if v == "1" then
+				str = str.."1"
+				print("1")
+			end
+			if v == "2" then
+				str = str.."2"
+				print("2")
+			end
+			if v == "3" then
+				str = str.."3"
+				print("3")
+			end
+			if v == "4" then
+				str = str.."4"
+				print("4")
+			end
+			if v == "5" then
+				str = str.."5"
+				print("5")
+			end
+			if v == "6" then
+				str = str.."6"
+				print("6")
+			end
+			if v == "7" then
+				str = str.."7"
+				print("7")
+			end
+			if v == "8" then
+				str = str.."8"
+				print("8")
+			end
+			if v == "9" then
+				str = str.."9"
+				print("9")
+			end
+			if v == "0" then
+				str = str.."0"
+				print("0")
+			end
+		end
+		Chat(str)
+	else
+		textbox.PlaceholderText = "Text can't be nil!"
+		wait(3)
+		textbox.PlaceholderText = "Type in the text that you would like to bypass!"
+	end
+end)
+
+drag.MouseButton1Down:Connect(Drag)
+drag.MouseButton1Up:Connect(Release)
